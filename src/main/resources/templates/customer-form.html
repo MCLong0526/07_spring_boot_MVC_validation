@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Customer Form</title>
+<style>
+    .error {color:red}
+</style>
+</head>
+<body>
+<form th:action="@{/processForm}" method="POST" th:object="${customer}">
+    Working Place : <input th:type="checkbox" th:each="tempPlace : ${places}" th:value="${tempPlace}" th:field="*{place}" th:text="${tempPlace}"/>
+    <br><br>
+    First Name : <input th:type="text" th:field="*{firstName}" />
+    <br><br>
+    Last Name {*}: <input th:type="text" th:field="*{lastName}" />
+    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></span>
+    <br><br>
+
+    <input type="submit" value="Submit"/>
+</form>
+</body>
+</html>
