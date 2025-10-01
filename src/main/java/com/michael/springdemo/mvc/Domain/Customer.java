@@ -1,5 +1,6 @@
 package com.michael.springdemo.mvc.Domain;
 
+import com.michael.springdemo.mvc.Validation.CourseCode;
 import jakarta.validation.constraints.*;
 
 public class Customer {
@@ -29,8 +30,13 @@ public class Customer {
     @Size(max=3, message="age should not more than 3 digits")
     private String age;
 
+
+    @CourseCode(value="TOP", message="must start with TOP")
+    @NotNull(message="is required")
+    private String courseCode;
+
     public Customer(){}
-    public Customer(String firstName, String lastName, String place, int freePasses, String phoneNumber, String postalCode, String age) {
+    public Customer(String firstName, String lastName, String place, int freePasses, String phoneNumber, String postalCode, String age, String courseCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.place=place;
@@ -38,6 +44,7 @@ public class Customer {
         this.phoneNumber = phoneNumber;
         this.postalCode = postalCode;
         this.age=age;
+        this.courseCode = courseCode;
     }
 
     public String getFirstName() {
@@ -94,5 +101,13 @@ public class Customer {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getCourseCode() {
+        return courseCode;
+    }
+
+    public void setCourseCode(String courseCode) {
+        this.courseCode = courseCode;
     }
 }
